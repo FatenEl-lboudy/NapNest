@@ -1,0 +1,176 @@
+{
+    "title": "Pittsburgh Sleep Quality Index (PSQI)",
+    "questions": [
+      {
+        "id": "q1",
+        "text": "During the past month, what time have you usually gone to bed at night?",
+        "options": [
+          { "value": "8pm-10pm",   "label": "8:00 PM - 10:00 PM" },
+          { "value": "10pm-12am",  "label": "10:00 PM - 12:00 AM" },
+          { "value": "12am-2am", "label": "12:00 AM - 2:00 AM" },
+          { "value": "2am-4am",  "label": "2:00 AM - 4:00 AM" }
+        ]
+      },
+      {
+        "id": "q2",
+        "text": "During the past month, how long (in minutes) has it usually taken you to fall asleep each night?",
+        "options": [
+          { "value": "1-15",  "label": "1-15 mins" },
+          { "value": "16-30", "label": "16-30 mins" },
+          { "value": "31-60", "label": "31-60 mins" },
+          { "value": "+60",   "label": "+60 mins" }
+        ]
+      },
+      {
+        "id": "q3",
+        "text": "During the past month, what time have you usually gotten up in the morning?",
+        "options": [
+          { "value": "6-8am",   "label": "6:00 AM - 8:00 AM" },
+          { "value": "8-10am",  "label": "8:00 AM - 10:00 AM" },
+          { "value": "10-12pm", "label": "10:00 AM - 12:00 PM" },
+          { "value": "12-2pm",  "label": "12:00 PM - 2:00 PM" }
+        ]
+      },
+      {
+        "id": "q4",
+        "text": "During the past month, how many hours of actual sleep did you get at night? (This may be different than the number of hours you spent in bed)",
+        "options": [
+          { "value": ">=7", "label": ">=7" },
+          { "value": "6-7", "label": "At least 6 but less than 7 hours" },
+          { "value": "5-6", "label": "At least 5 but less than 6 hours" },
+          { "value": "<5",  "label": "Less than 5 hours" }
+        ]
+      },
+      {
+        "id": "q5_1",
+        "text": "During the past month, how often have you had trouble sleeping because you... Cannot get to sleep within 30 minutes?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q5_2",
+        "text": "During the past month, how often have you had trouble sleeping because you... Wake up in the middle of the night or early morning?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q5_3",
+        "text": "During the past month, how often have you had trouble sleeping because you... Have to get up to use the bathroom?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q5_4",
+        "text": "During the past month, how often have you had trouble sleeping because you... Cannot breathe comfortably?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q5_5",
+        "text": "During the past month, how often have you had trouble sleeping because you... Cough or snore loudly?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q5_6",
+        "text": "During the past month, how often have you had trouble sleeping because you... Feel too cold?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q5_7",
+        "text": "During the past month, how often have you had trouble sleeping because you... Feel too hot?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q5_8",
+        "text": "During the past month, how often have you had trouble sleeping because you... Have bad dreams?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q5_9",
+        "text": "During the past month, how often have you had trouble sleeping because you... Have pain?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q6",
+        "text": "During the past month, how often have you taken medicine to help you sleep (prescribed or over the counter)?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q7",
+        "text": "During the past month, how often have you had trouble staying awake while driving, eating meals, or engaging in social activities?",
+        "options": [
+          { "value": "0", "label": "Not during the past month" },
+          { "value": "1", "label": "Less than once a week" },
+          { "value": "2", "label": "Once or twice a week" },
+          { "value": "3", "label": "Three or more times a week" }
+        ]
+      },
+      {
+        "id": "q8",
+        "text": "During the past month, how much of a problem has it been for you to keep up enough enthusiasm to get things done?",
+        "options": [
+          { "value": "0", "label": "No problem at all" },
+          { "value": "1", "label": "Only a very slight problem" },
+          { "value": "2", "label": "Somewhat of a problem" },
+          { "value": "3", "label": "A very big problem" }
+        ]
+      },
+      {
+        "id": "q9",
+        "text": "During the past month, how would you rate your sleep quality overall?",
+        "options": [
+          { "value": "0", "label": "Very good" },
+          { "value": "1", "label": "Fairly good" },
+          { "value": "2", "label": "Fairly bad" },
+          { "value": "3", "label": "Very bad" }
+        ]
+      }
+    ]
+  }
+  
