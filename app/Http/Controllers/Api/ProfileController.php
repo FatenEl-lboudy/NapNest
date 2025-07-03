@@ -26,33 +26,38 @@ class ProfileController extends Controller
     }
     
     public function update(Request $request)
-    {
-        $user = $request->user();
-        $request->validate([
-            'patient_name' => 'required|string|max:50',
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('users')->ignore($user->id),
-            ],
-            'gender' => 'required|in:Male,Female',
-            'birth_date' => 'required|date',
-        ]);
+{
+    $user = $request->user();
 
-        // Update personal Information 
-        $user->update([
-            'patient_name' => $request->patient_name,
-            'email' => $request->email,
-            'gender' => $request->gender,
-            'birth_date' => $request->birth_date,
-        ]);
+    $request->validate([
+        'patient_name' => 'sometimes|string|max:50',
+        'email' => [
+            'sometimes',
+            'email',
+            Rule::unique('users')->ignore($user->id),
+        ],
+        'gender' => 'sometimes|in:Male,Female',
+        'birth_date' => 'sometimes|date',
+    ]);
+#Update Profile 
+    $user->update($request->only([
+        'patient_name',
+        'email',
+        'gender',
+        'birth_date',
+    ]));
 
-        return response()->json([
-            'message' => 'Profile updated successfully',
-            'user' => $user
-        ], 200);
-        
-    }
+    return response()->json([
+        'message' => 'Profile updated successfully',
+        'user' => [
+        'patient_name' => $user->patient_name,
+        'email'        => $user->email,
+        'gender'       => $user->gender,
+        'birth_date'   => $user->birth_date,
+    ]
+    ], 200);
+}
+
     public function destroy(Request $request)
 {
     $user = $request->user();
