@@ -25,13 +25,35 @@ class User extends Authenticatable
         'gender',
         'birth_date',
         'otp_code',
-    'otp_expires_at',
+        'otp_expires_at',
 
     ];
     public function psqiTests()
     {
         return $this->hasMany(PSQITest::class, 'patient_id');
     }
+
+    public function latestSleepRecord()
+    {
+        return $this->hasOne(SleepRecord::class)->latestOfMany();
+    }
+
+    public function myPlan()
+    {
+        return $this->hasOne(MyPlan::class)->with('planSteps');
+    }
+
+    public function alarm()
+    {
+        return $this->hasOne(Alarm::class);
+    }
+
+    public function device()
+    {
+        return $this->hasOne(Device::class);
+    }
+
+
 
     /**
      * The attributes that should be hidden for serialization.
