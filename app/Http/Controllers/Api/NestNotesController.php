@@ -50,24 +50,27 @@ class NestNotesController extends Controller
 
     // Get documents in a single section
     public function bySection($slug)
-    {
-        $items = NestNotes::where('slug', $slug)->get();
+{
+    $sectionName = Str::of($slug)->replace('-', ' ')->title();
 
-        if ($items->isEmpty()) {
-            return response()->json(['message' => 'Section not found.'], 404);
-        }
+    $items = NestNotes::where('section', $sectionName)->get();
 
-        return response()->json([
-            'section' => $items->first()->section,
-            'tagline' => $items->first()->tagline,
-            'documents' => $items->map(fn($item) => [
-                'id' => $item->id,
-                'title' => $item->title,
-                'description' => $item->description,
-                'content' => $item->content,
-            ])
-        ]);
+    if ($items->isEmpty()) {
+        return response()->json(['message' => 'Section not found.'], 404);
     }
+
+    return response()->json([
+        'section' => $items->first()->section,
+        'tagline' => $items->first()->tagline,
+        'documents' => $items->map(fn($item) => [
+            'id' => $item->id,
+            'title' => $item->title,
+            'description' => $item->description,
+            'content' => $item->content,
+        ])
+    ]);
+}
+
 
     //get document by id
     public function show($id)
