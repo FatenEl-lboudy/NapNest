@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\LibraryItems;
+use App\Models\NestNotes;
 
-class LibraryController extends Controller
+class NestNotesController extends Controller
 {
     public function index()
     {
         // Get all items grouped by section
-        $grouped = LibraryItems::all()
+        $grouped = NestNotes::all()
             ->groupBy('section')
             ->map(function ($items, $section) {
                 return [
@@ -36,7 +36,7 @@ class LibraryController extends Controller
     public function sections()
     {
         return response()->json(
-            LibraryItems::select('section')
+            NestNotes::select('section')
                 ->distinct()
                 ->get()
                 ->pluck('section')
@@ -51,7 +51,7 @@ class LibraryController extends Controller
     // Get documents in a single section
     public function bySection($slug)
     {
-        $items = LibraryItems::where('slug', $slug)->get();
+        $items = NestNotes::where('slug', $slug)->get();
 
         if ($items->isEmpty()) {
             return response()->json(['message' => 'Section not found.'], 404);
@@ -72,7 +72,7 @@ class LibraryController extends Controller
     //get document by id
     public function show($id)
     {
-        $document = LibraryItems::find($id);
+        $document = NestNotes::find($id);
 
         if (!$document) {
             return response()->json(['message' => 'Document not found.'], 404);
@@ -85,7 +85,7 @@ class LibraryController extends Controller
     //featured documents for home screen
     public static function recommended()
     {
-        $recommended = LibraryItems::where('is_featured', true)
+        $recommended = NestNotes::where('is_featured', true)
             ->inRandomOrder()
             ->take(3)
             ->get()

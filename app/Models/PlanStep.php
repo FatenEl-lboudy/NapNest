@@ -10,7 +10,7 @@ class PlanStep extends Model
     use HasFactory;
     public function myPlan()
 {
-    return $this->belongsTo(MyPlan::class);
+    return $this->belongsTo(MyPath::class);
 }
 
 }

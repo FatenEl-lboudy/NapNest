@@ -13,8 +13,9 @@ use App\Http\Controllers\Api\LibraryController;
 use App\Http\Controllers\Api\SoundTrackController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\CbtTechniqueController;
+use App\Http\Controllers\Api\MyPathController;
+use App\Http\Controllers\Api\NestNotesController;
 use App\Http\Controllers\Api\SleepInferenceController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -66,13 +67,13 @@ Route::middleware('auth:sanctum')->group(function () {
         //actions & nav bar
         Route::get('/', [HomeController::class, 'index'])->name('home.index');
         Route::get('/sleep/setup', [SleepSetupController::class, 'index'])->name('home.sleep.setup');
-        Route::get('/my-plan', [MyPlanController::class, 'index'])->name('home.my-plan');
-        Route::prefix('library')->middleware('auth:sanctum')->group(function () {
-            Route::get('/', [LibraryController::class, 'index'])->name('library.index'); 
-            Route::get('/sections', [LibraryController::class, 'sections'])->name('library.sections'); 
-            Route::get('/section/{slug}', [LibraryController::class, 'bySection'])->name('library.bySection'); // fetch docs in a section
-            Route::get('/recommended', [LibraryController::class, 'recommended'])->name('library.recommended');
-            Route::get('/{id}', [LibraryController::class, 'show'])->name('library.show'); // fetch single document by ID
+        Route::get('/my-path', [MyPathController::class, 'index'])->name('home.my-path');
+        Route::prefix('nest-notes')->middleware('auth:sanctum')->group(function () {
+            Route::get('/', [NestNotesController::class, 'index'])->name('nest-notes.index'); 
+            Route::get('/sections', [NestNotesController::class, 'sections'])->name('nest-notes.sections'); 
+            Route::get('/section/{slug}', [NestNotesController::class, 'bySection'])->name('nest-notes.bySection'); // fetch docs in a section
+            Route::get('/recommended', [NestNotesController::class, 'recommended'])->name('nest-notes.recommended');
+            Route::get('/{id}', [NestNotesController::class, 'show'])->name('nest-notes.show'); // fetch single document by ID
         });
 
         Route::get('/statistics', [StatisticsController::class, 'index'])->name('home.statistics');
