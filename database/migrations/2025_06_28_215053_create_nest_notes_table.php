@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('library_items', function (Blueprint $table) {
+        Schema::create('nest_notes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('library_items', function (Blueprint $table) {
+        Schema::table('nest_notes', function (Blueprint $table) {
             //
         });
     }

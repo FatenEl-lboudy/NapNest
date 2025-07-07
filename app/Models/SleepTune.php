@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SoundTrack extends Model
+class SleepTune extends Model
 {
     use HasFactory;
 }

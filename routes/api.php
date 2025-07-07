@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\SleepSetupController;
 use App\Http\Controllers\Api\MyPlanController;
 use App\Http\Controllers\Api\LibraryController;
-use App\Http\Controllers\Api\SoundTrackController;
+use App\Http\Controllers\Api\SleepTuneController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\CbtTechniqueController;
 use App\Http\Controllers\Api\MyPathController;
@@ -80,7 +80,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/profile', [ProfileController::class, 'show'])->name('home.profile');
 
         //recommended
-        Route::get('/sound-tracks', [SoundTrackController::class, 'recommended'])->name('home.sound-tracks');
+        Route::get('/sleep-tuness', [SleepTuneController::class, 'recommended'])->name('home.sleep-tunes');
         Route::get('/breathing/recommended', [CbtTechniqueController::class, 'recommendedBreathing'])->name('home.breathing.recommended');
     });
 

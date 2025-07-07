@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\SleepTune;
 use Illuminate\Http\Request;
-use App\Models\SoundTrack;
 
-class SoundTrackController extends Controller
+class SleepTuneController extends Controller
 {
     public static function recommended()
 {
-    $sounds = SoundTrack::where('is_featured', true)
+    $sounds = SleepTune::where('is_featured', true)
         ->inRandomOrder()
         ->take(3)
         ->get()

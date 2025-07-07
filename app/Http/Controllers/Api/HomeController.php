@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SoundTrack;
+use App\Models\SoundTune;
 use App\Models\CbtTechnique;
-use App\Http\Controllers\Api\LibraryController;
-use App\Http\Controllers\Api\SoundTrackController;
-
-
+use App\Http\Controllers\Api\NestNotesController;
+use App\Http\Controllers\Api\SoundTuneController;
+use App\Models\SleepTune;
 
 class HomeController extends Controller
 {
@@ -25,8 +24,8 @@ class HomeController extends Controller
             'sleep_record' => $user->latestSleepRecord,
             'my_plan' => $user->myPlan,
             'daily_technique' => $technique,
-            'recommended_sounds' => SoundTrackController::recommended(),
-            'recommended_library' => LibraryController::recommended(),
+            'recommended_sounds' => SleepTune::recommended(),
+            'recommended_library' => NestNotesController::recommended(),
             'recommended_breathing' => CbtTechniqueController::recommendedBreathing(),
         ]);
     }

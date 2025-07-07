@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('my_plans', function (Blueprint $table) {
+        Schema::create('sleep_tunes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('my_plan_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->text('instructions')->nullable();
-            $table->unsignedInteger('day_index');
-            $table->boolean('is_completed')->default(false);
-            $table->timestamp('scheduled_for')->nullable();
+            $table->text('description')->nullable();
+            $table->enum('source_type', ['local', 'youtube']); 
+            $table->string('file_path')->nullable(); 
+            $table->string('youtube_url')->nullable(); 
+            $table->integer('duration')->nullable();
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('myplans');
+        Schema::dropIfExists('sleep_tunes');
     }
 };

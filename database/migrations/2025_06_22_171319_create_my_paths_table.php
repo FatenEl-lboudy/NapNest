@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sound_tracks', function (Blueprint $table) {
+        Schema::create('my_paths', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('my_path_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->text('description')->nullable();
-            $table->enum('source_type', ['local', 'youtube']); 
-            $table->string('file_path')->nullable(); 
-            $table->string('youtube_url')->nullable(); 
-            $table->integer('duration')->nullable();
-            $table->boolean('is_featured')->default(false);
+            $table->text('instructions')->nullable();
+            $table->unsignedInteger('day_index');
+            $table->boolean('is_completed')->default(false);
+            $table->timestamp('scheduled_for')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sound_tracks');
+        Schema::dropIfExists('mypaths');
     }
 };

@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use App\Models\LibraryItems;
+use App\Models\NestNotes;
 
-class LibraryItemsSeeder extends Seeder
+class NestNotesSeeder extends Seeder
 {
     public function run(): void
     {
@@ -33,7 +33,7 @@ class LibraryItemsSeeder extends Seeder
         ];
 
         foreach ($documents as $doc) {
-            LibraryItems::create([
+            NestNotes::create([
                 'title' => $doc['title'],
                 'tagline' => $tagline,
                 'description' => $doc['description'],
@@ -66,7 +66,7 @@ class LibraryItemsSeeder extends Seeder
         ];
 
         foreach ($documents as $doc) {
-            LibraryItems::create([
+            NestNotes::create([
                 'title' => $doc['title'],
                 'tagline' => $tagline,
                 'description' => $doc['description'],
@@ -99,7 +99,7 @@ class LibraryItemsSeeder extends Seeder
         ];
 
         foreach ($documents as $doc) {
-            LibraryItems::create([
+            NestNotes::create([
                 'title' => $doc['title'],
                 'tagline' => $tagline,
                 'description' => $doc['description'],
@@ -132,7 +132,7 @@ class LibraryItemsSeeder extends Seeder
         ];
 
         foreach ($documents as $doc) {
-            LibraryItems::create([
+            NestNotes::create([
                 'title' => $doc['title'],
                 'tagline' => $tagline,
                 'description' => $doc['description'],
@@ -165,7 +165,7 @@ class LibraryItemsSeeder extends Seeder
         ];
 
         foreach ($documents as $doc) {
-            LibraryItems::create([
+            NestNotes::create([
                 'title' => $doc['title'],
                 'tagline' => $tagline,
                 'description' => $doc['description'],
