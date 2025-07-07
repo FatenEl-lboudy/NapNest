@@ -68,7 +68,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('home.index');
         Route::get('/sleep/setup', [SleepSetupController::class, 'index'])->name('home.sleep.setup');
         Route::get('/my-path', [MyPathController::class, 'index'])->name('home.my-path');
-        Route::prefix('nest-notes')->middleware('auth:sanctum')->group(function () {
+        Route::prefix('nest-notes')->group(function () {
             Route::get('/', [NestNotesController::class, 'index'])->name('nest-notes.index'); 
             Route::get('/sections', [NestNotesController::class, 'sections'])->name('nest-notes.sections'); 
             Route::get('/section/{slug}', [NestNotesController::class, 'bySection'])->name('nest-notes.bySection'); // fetch docs in a section
