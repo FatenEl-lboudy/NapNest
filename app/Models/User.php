@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\SleepMetric;
 
 class User extends Authenticatable
 {
@@ -33,14 +35,15 @@ class User extends Authenticatable
         return $this->hasMany(PSQITest::class, 'patient_id');
     }
 
-    public function latestSleepRecord()
+
+    public function myPath()
     {
-        return $this->hasOne(SleepRecord::class)->latestOfMany();
+        return $this->hasOne(MyPath::class)->with('planSteps');
     }
 
-    public function myPlan()
+    public function nestNotes(): HasMany
     {
-        return $this->hasOne(MyPlan::class)->with('planSteps');
+        return $this->hasMany(NestNotes::class);
     }
 
     public function alarm()
@@ -51,6 +54,21 @@ class User extends Authenticatable
     public function device()
     {
         return $this->hasOne(Device::class);
+    }
+
+    public function sleepMetrics(): HasMany
+    {
+        return $this->hasMany(SleepMetric::class);
+    }
+
+    public function sleepTunes(): HasMany
+    {
+        return $this->hasMany(SleepTune::class);
+    }
+
+    public function cbtTechniques(): HasMany
+    {
+        return $this->hasMany(CbtTechnique::class);
     }
 
 

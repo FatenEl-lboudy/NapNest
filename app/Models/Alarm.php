@@ -5,22 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MyPath extends Model
+class Alarm extends Model
 {
-    protected $table = 'my_paths';
     protected $fillable = [
         'patient_id',
-        'title',
-        'instructions',
-        'day_index',
-        'is_completed',
-        'scheduled_for'
+        'wake_time',
+        'is_active'
     ];
-    use HasFactory;
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
+    use HasFactory;
 }

@@ -8,14 +8,14 @@ use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\PSQIController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\SleepSetupController;
-use App\Http\Controllers\Api\MyPlanController;
-use App\Http\Controllers\Api\LibraryController;
 use App\Http\Controllers\Api\SleepTuneController;
-use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\CbtTechniqueController;
 use App\Http\Controllers\Api\MyPathController;
 use App\Http\Controllers\Api\NestNotesController;
-use App\Http\Controllers\Api\SleepInferenceController;
+use App\Http\Controllers\Api\NightGraphsController;
+use App\Http\Controllers\Api\NightNotionsController;
+use App\Http\Controllers\Api\DeviceController;
+use App\Http\Controllers\Api\AlarmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
 
 //test route 
 //Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
-    //return $request->user();
+//return $request->user();
 //});
 
 // Get current user
@@ -69,22 +69,46 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/sleep/setup', [SleepSetupController::class, 'index'])->name('home.sleep.setup');
         Route::get('/my-path', [MyPathController::class, 'index'])->name('home.my-path');
         Route::prefix('nest-notes')->group(function () {
-            Route::get('/', [NestNotesController::class, 'index'])->name('nest-notes.index'); 
-            Route::get('/sections', [NestNotesController::class, 'sections'])->name('nest-notes.sections'); 
+            Route::get('/', [NestNotesController::class, 'index'])->name('nest-notes.index');
+            Route::get('/sections', [NestNotesController::class, 'sections'])->name('nest-notes.sections');
             Route::get('/section/{slug}', [NestNotesController::class, 'bySection'])->name('nest-notes.bySection'); // fetch docs in a section
             Route::get('/recommended', [NestNotesController::class, 'recommended'])->name('nest-notes.recommended');
             Route::get('/{id}', [NestNotesController::class, 'show'])->name('nest-notes.show'); // fetch single document by ID
         });
+        //my Path
+        Route::prefix('my-path')->middleware('auth:sanctum')->group(function () {
+            Route::get('/', [MyPathController::class, 'index']);
+            Route::post('/complete', [MyPathController::class, 'markComplete']);
+            // nest time
+            Route::prefix('nest-time')->group(function () {
+                Route::prefix('device')->group(function () {
+                    Route::post('/connect', [DeviceController::class, 'connect']);
+                });
+                Route::prefix('alarm')->group(function () {
+                   Route::post('/set', [AlarmController::class, 'store']);
+                Route::get('/', [AlarmController::class, 'show']);
+               });
 
-        Route::get('/statistics', [StatisticsController::class, 'index'])->name('home.statistics');
+            });
+            });
+
+            Route::get('/night-notions/questions', [NightNotionsController::class, 'questions']);
+            Route::get('/night-notions/flashcards/{questionId}', [NightNotionsController::class, 'flashcards']);
+        });
+
+
+        Route::middleware('auth:sanctum')->prefix('night-graphs')->group(function () {
+            Route::post('/upload', [NightGraphsController::class, 'store']);            // POST ai metrics + timeline
+            Route::get('/daily/{date}', [NightGraphsController::class, 'showDaily']);   // GET daily view for flutter pie charts
+            Route::get('/weekly', [NightGraphsController::class, 'weeklyEfficiency']);  // GET weekly trend for line chart
+        });
         Route::get('/profile', [ProfileController::class, 'show'])->name('home.profile');
 
         //recommended
         Route::get('/sleep-tuness', [SleepTuneController::class, 'recommended'])->name('home.sleep-tunes');
         Route::get('/breathing/recommended', [CbtTechniqueController::class, 'recommendedBreathing'])->name('home.breathing.recommended');
-    });
 
 
     //model inference
-   // Route::middleware('auth:sanctum')->post('/', [SleepInferenceController::class, 'store']);
+    // Route::middleware('auth:sanctum')->post('/', [SleepInferenceController::class, 'store']);
 });

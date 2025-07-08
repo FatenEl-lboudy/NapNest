@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plan_steps', function (Blueprint $table) {
+        Schema::create('sleep_timeline_segments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sleep_metric_id')->constrained()->onDelete('cascade');
+            $table->enum('state', ['Sleep', 'Wake']);
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->decimal('duration_min', 5, 2);
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plan_steps');
+        Schema::dropIfExists('sleep_timeline_segments');
     }
 };

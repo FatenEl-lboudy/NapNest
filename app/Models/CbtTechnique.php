@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class CbtTechnique extends Model
 {
     use HasFactory;
+    protected $table = 'cbt_techniques';
     protected $fillable = [
         'title',
         'type',
-        'description', 'resource_path',
-        'created_at',
-        'updated_at',
+        'description', 'benefits', 'resource_path', 'is_featured'
     ];
     
 }
