@@ -38,7 +38,7 @@ class User extends Authenticatable
 
     public function myPath()
     {
-        return $this->hasOne(MyPath::class)->with('planSteps');
+        return $this->hasOne(MyPath::class, 'user_id');
     }
 
     public function nestNotes(): HasMany
@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function sleepMetrics(): HasMany
     {
-        return $this->hasMany(SleepMetric::class);
+        return $this->hasMany(SleepMetric::class, 'patient_id', 'patient_id');
     }
 
     public function sleepTunes(): HasMany
