@@ -40,9 +40,9 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth:sanctum');
 
 //test route 
-//Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
-//return $request->user();
-//});
+Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
+return "test route";
+});
 
 // Get current user
 Route::get('/user', function (Request $request) {
