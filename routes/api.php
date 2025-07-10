@@ -66,6 +66,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('home')->middleware('auth:sanctum')->group(function () {
         //actions & nav bar
         Route::get('/', [HomeController::class, 'index'])->name('home.index');
+        //recommended
+        Route::get('/sleep-tunes-recommnded', [SleepTuneController::class, 'recommended'])->name('home.sleep-tunes');
+        Route::get('/breathing-recommended', [CbtTechniqueController::class, 'recommendedBreathing'])->name('home.breathing.recommended');
         Route::get('/sleep/setup', [SleepSetupController::class, 'index'])->name('home.sleep.setup');
         Route::get('/recommended-nest-notes', [NestNotesController::class, 'recommended'])->name('nest-notes.recommended');
         Route::get('/my-path', [MyPathController::class, 'index'])->name('home.my-path');
@@ -104,10 +107,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
         Route::get('/profile', [ProfileController::class, 'show'])->name('home.profile');
 
-        //recommended
-        Route::get('/sleep-tunes-recommnded', [SleepTuneController::class, 'recommended'])->name('home.sleep-tunes');
-        Route::get('/breathing-recommended', [CbtTechniqueController::class, 'recommendedBreathing'])->name('home.breathing.recommended');
-
+        
 
     //model inference
     // Route::middleware('auth:sanctum')->post('/', [SleepInferenceController::class, 'store']);
