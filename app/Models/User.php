@@ -38,7 +38,7 @@ class User extends Authenticatable
 
     public function myPath()
     {
-        return $this->hasOne(MyPath::class, 'user_id');
+        return $this->hasOne(MyPath::class, 'patient_id');
     }
 
     public function nestNotes(): HasMany

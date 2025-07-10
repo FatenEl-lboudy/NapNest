@@ -40,9 +40,9 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth:sanctum');
 
 //test route 
-Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
-return "test route";
-});
+//Route::get('/me', function (Request $request) {
+//return "test route";
+//});
 
 // Get current user
 Route::get('/user', function (Request $request) {
@@ -67,12 +67,12 @@ Route::middleware('auth:sanctum')->group(function () {
         //actions & nav bar
         Route::get('/', [HomeController::class, 'index'])->name('home.index');
         Route::get('/sleep/setup', [SleepSetupController::class, 'index'])->name('home.sleep.setup');
+        Route::get('/recommended-nest-notes', [NestNotesController::class, 'recommended'])->name('nest-notes.recommended');
         Route::get('/my-path', [MyPathController::class, 'index'])->name('home.my-path');
         Route::prefix('nest-notes')->group(function () {
             Route::get('/', [NestNotesController::class, 'index'])->name('nest-notes.index');
             Route::get('/sections', [NestNotesController::class, 'sections'])->name('nest-notes.sections');
             Route::get('/section/{slug}', [NestNotesController::class, 'bySection'])->name('nest-notes.bySection'); // fetch docs in a section
-            Route::get('/recommended', [NestNotesController::class, 'recommended'])->name('nest-notes.recommended');
             Route::get('/{id}', [NestNotesController::class, 'show'])->name('nest-notes.show'); // fetch single document by ID
         });
         //my Path
@@ -105,8 +105,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/profile', [ProfileController::class, 'show'])->name('home.profile');
 
         //recommended
-        Route::get('/sleep-tuness', [SleepTuneController::class, 'recommended'])->name('home.sleep-tunes');
-        Route::get('/breathing/recommended', [CbtTechniqueController::class, 'recommendedBreathing'])->name('home.breathing.recommended');
+        Route::get('/sleep-tunes-recommnded', [SleepTuneController::class, 'recommended'])->name('home.sleep-tunes');
+        Route::get('/breathing-recommended', [CbtTechniqueController::class, 'recommendedBreathing'])->name('home.breathing.recommended');
 
 
     //model inference
