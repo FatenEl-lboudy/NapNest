@@ -12,7 +12,8 @@ class SleepSetupController extends Controller
 
     public function index()
     {
-        $user = auth()->user();
+        /** @var \App\Models\User $user */
+        $user = auth()->User();
 
         $alarm = $user->alarm ?? null;
 

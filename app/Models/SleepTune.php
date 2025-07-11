@@ -13,6 +13,7 @@ class SleepTune extends Model
         'title',
         'description',
         'file_url',
+        'image_path',
         'is_featured',
     ];
     use HasFactory;

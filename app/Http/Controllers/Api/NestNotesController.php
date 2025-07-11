@@ -50,26 +50,26 @@ class NestNotesController extends Controller
 
     // Get documents in a single section
     public function bySection($slug)
-{
-    $sectionName = Str::of($slug)->replace('-', ' ')->title();
+    {
+        $sectionName = Str::of($slug)->replace('-', ' ')->title();
 
-    $items = NestNotes::where('section', $sectionName)->get();
+        $items = NestNotes::where('section', $sectionName)->get();
 
-    if ($items->isEmpty()) {
-        return response()->json(['message' => 'Section not found.'], 404);
+        if ($items->isEmpty()) {
+            return response()->json(['message' => 'Section not found.'], 404);
+        }
+
+        return response()->json([
+            'section' => $items->first()->section,
+            'tagline' => $items->first()->tagline,
+            'documents' => $items->map(fn($item) => [
+                'id' => $item->id,
+                'title' => $item->title,
+                'description' => $item->description,
+                'content' => $item->content,
+            ])
+        ]);
     }
-
-    return response()->json([
-        'section' => $items->first()->section,
-        'tagline' => $items->first()->tagline,
-        'documents' => $items->map(fn($item) => [
-            'id' => $item->id,
-            'title' => $item->title,
-            'description' => $item->description,
-            'content' => $item->content,
-        ])
-    ]);
-}
 
 
     //get document by id
@@ -85,7 +85,7 @@ class NestNotesController extends Controller
     }
 
 
-    //featured documents for home screen
+    //featured  recommended documents for home screen
     public static function recommended()
     {
         $recommended = NestNotes::where('is_featured', true)
@@ -105,5 +105,28 @@ class NestNotesController extends Controller
             });
 
         return response()->json($recommended);
+    }
+
+    //challenge negative thoughts of my path
+    public function showChallengeThought(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = $request->user();
+
+        $daysSinceStart = optional($user->myPathStartedAt)->diffInDays(now()) ?? 0;
+        $documentId = 10 + $daysSinceStart;
+
+        $document = NestNotes::find($documentId);
+
+        if (!$document) {
+            return response()->json(['message' => 'Challenge document not found.'], 404);
+        }
+
+        return response()->json([
+            'id' => $document->id,
+            'title' => $document->title,
+            'description' => $document->description,
+            'content' => $document->content,
+        ]);
     }
 }

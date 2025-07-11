@@ -17,7 +17,8 @@ class AlarmController extends Controller
             'is_enabled' => 'sometimes|boolean'
         ]);
 
-        $user = $request->user();
+        /** @var \App\Models\User $user */
+        $user = $request->User();
 
         $alarm = Alarm::updateOrCreate(
             ['patient_id' => $user->patient_id],

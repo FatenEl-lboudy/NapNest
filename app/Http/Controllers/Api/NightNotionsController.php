@@ -10,17 +10,20 @@ class NightNotionsController extends Controller
 {
     public function questions()
     {
-        $questions = CbtTechnique::where('type', 'flashcard')
-            ->select('id', 'title', 'description')
+        $questions = CbtFlashcards::select('id', 'negative_thought')
+            ->inRandomOrder()
+            ->take(3)
             ->get();
 
         return response()->json($questions);
     }
 
-    public function flashcards($techniqueId)
+    public function flashcards($flashcard_id)
     {
-        $cards = CbtFlashcards::where('cbt_technique_id', $techniqueId)->get([
-            'id', 'negative_thought', 'positive_reframe'
+        $cards = CbtFlashcards::where('id', $flashcard_id)->get([
+            'id',
+            'negative_thought',
+            'positive_reframe'
         ]);
 
         return response()->json($cards);

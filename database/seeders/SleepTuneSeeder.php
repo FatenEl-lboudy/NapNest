@@ -14,12 +14,13 @@ class SleepTuneSeeder extends Seeder
     public function run(): void
     {
         $tunes = [
-             
+
             [
                 'title' => 'Ocean Waves',
                 'description' => 'Rolling ocean waves with distant seagulls.',
                 'source_type' => 'local',
                 'file_path' => 'audio/ocean_waves.mp3',
+                'image_path' => 'sleep_images/oceanwaves.jpg',
                 'youtube_url' => null,
                 'duration' => 600,
                 'is_featured' => True
@@ -29,8 +30,9 @@ class SleepTuneSeeder extends Seeder
                 'description' => 'Gentle rain layered with distant thunder to quiet the mind.',
                 'source_type' => 'local',
                 'file_path' => 'audio/Thunderstorms.mp3',
+                'image_path' => 'sleep_images/thunderstorms.jpg',
                 'youtube_url' => null,
-                'duration' => 600, 
+                'duration' => 600,
                 'is_featured' => true
             ],
             [
@@ -38,6 +40,7 @@ class SleepTuneSeeder extends Seeder
                 'description' => 'The rhythmic sound of rain calms the mind before sleep.',
                 'source_type' => 'local',
                 'file_path' => 'audio/rainfall.mp3',
+                'image_path' => 'sleep_images/rainfall.jpg',
                 'youtube_url' => null,
                 'duration' => 600,
                 'is_featured' => true
@@ -47,6 +50,7 @@ class SleepTuneSeeder extends Seeder
                 'description' => 'The soft crackle of fire induces comfort and security.',
                 'source_type' => 'local',
                 'file_path' => 'audio/Fireplace Crackling.mp3',
+                'image_path' => 'sleep_images/fireplacecrackling.jpg',
                 'youtube_url' => null,
                 'duration' => 600,
                 'is_featured' => true
@@ -55,7 +59,8 @@ class SleepTuneSeeder extends Seeder
                 'title' => 'Forest Ambience',
                 'description' => 'Rustling leaves and birdsong that gently ground the mind.',
                 'source_type' => 'local',
-                'file_path' => 'audio\Forest Ambience.mp3',
+                'file_path' => 'audio/Forest Ambience.mp3',
+                'image_path' => 'sleep_images/forest ambience.jpg',
                 'youtube_url' => null,
                 'duration' => 615,
                 'is_featured' => True
@@ -65,13 +70,18 @@ class SleepTuneSeeder extends Seeder
                 'description' => 'A stable soundscape that masks anxiety-triggering noises.',
                 'source_type' => 'youtube',
                 'file_path' => null,
+                'image_path' => null,
                 'youtube_url' => 'https://youtu.be/Og40mpl8VNc?si=p5pFImvnh64HDRy7',
                 'duration' => null,
                 'is_featured' => false
             ]
         ];
 
-        SleepTune::insert($tunes);
-    
+        foreach ($tunes as $tune) {
+            SleepTune::updateOrCreate(
+                ['title' => $tune['title']], 
+                $tune
+            );
+        }
     }
 }
